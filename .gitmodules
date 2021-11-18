@@ -1,0 +1,9 @@
+[submodule "vendor/spdlog"]
+	path = vendor/spdlog
+	url = https://github.com/gabime/spdlog
+[submodule "vendor/colony"]
+	path = vendor/colony
+	url = https://github.com/mattreecebentley/plf_colony
+[submodule "vendor/plf_colony"]
+	path = vendor/plf_colony
+	url = https://github.com/mattreecebentley/plf_colony

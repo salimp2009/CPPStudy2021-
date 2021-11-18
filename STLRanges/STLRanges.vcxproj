@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{d0677a10-26dd-4cdb-b470-b59df207788a}</ProjectGuid>
+    <RootNamespace>STLRanges</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\$(Platform)-$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Platform)-$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)bin\$(Platform)-$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)bin-int\$(Platform)-$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>false</VcpkgEnableManifest>
+    <VcpkgEnabled>true</VcpkgEnabled>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <VcpkgConfiguration>Debug</VcpkgConfiguration>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <VcpkgConfiguration>Debug</VcpkgConfiguration>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>../vendor/spdlog/include;../vendor;src;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>RangesPCH.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <AdditionalIncludeDirectories>../vendor/spdlog/include;../vendor;src;</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>RangesPCH.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\ConstEvalConstInit\StaticInitOrderFiasco.cpp" />
+    <ClCompile Include="src\ConstEvalConstInit\staticOrderFiasco.cpp" />
+    <ClCompile Include="src\LambdaImprovementC20\LambdasUnEvaluatedContextTest.hpp" />
+    <ClCompile Include="src\RangesPCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">RangesPCH.hpp</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">RangesPCH.hpp</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="src\RangesPythonStyle.cpp" />
+    <ClCompile Include="src\RangesTests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Attributes\AttributesCpp20.hpp" />
+    <ClInclude Include="src\Attributes\AtttributesTests.hpp" />
+    <ClInclude Include="src\Attributes\VolatileChanges.hpp" />
+    <ClInclude Include="src\Attributes\VolatileChangesTests.hpp" />
+    <ClInclude Include="src\ChronoCalendarTimeZones\DatesTimeZoneExamples.hpp" />
+    <ClInclude Include="src\ChronoCalendarTimeZones\TimeZoneExamples.hpp" />
+    <ClInclude Include="src\CompilerModule.hpp" />
+    <ClInclude Include="src\FurtherImprovemntsCPP20\ImprovementsCPP20.hpp" />
+    <ClInclude Include="src\FurtherImprovemntsCPP20\ImprovmntsCPP20Tests.hpp" />
+    <ClInclude Include="src\LambdaImprovementC20\LambdaImprovements.hpp" />
+    <ClInclude Include="src\LambdaImprovementC20\LambdaImprovementsTest.hpp" />
+    <ClInclude Include="src\LambdaImprovementC20\LambdasUnEvaluatedContext.hpp" />
+    <ClInclude Include="src\NonTypeTemplateParams\ConditionalExplicitConstructor.hpp" />
+    <ClInclude Include="src\ConstEvalConstInit\ConstEvalConsInit.hpp" />
+    <ClInclude Include="src\ConstEvalConstInit\ConstEvalConstInitTests.hpp" />
+    <ClInclude Include="src\ContainerImprovements\ContImprovements.hpp">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsHeaderUnit</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsHeaderUnit</CompileAs>
+    </ClInclude>
+    <ClInclude Include="src\DesignatedInitialization\AggregateInitiliazation.hpp" />
+    <ClInclude Include="src\DesignatedInitialization\DesignatedInitializationTests.hpp" />
+    <ClInclude Include="src\FilterViewPerformanceIssue.hpp" />
+    <ClInclude Include="src\Formatting\CompileTimeFormatSpecifier.hpp" />
+    <ClInclude Include="src\Formatting\CustFormatStockIndexV3.hpp" />
+    <ClInclude Include="src\Formatting\CustomFormatLogger.hpp" />
+    <ClInclude Include="src\Formatting\CustomFormatter.hpp" />
+    <ClInclude Include="src\Formatting\CustomFormatterV2.hpp" />
+    <ClInclude Include="src\Formatting\CustomFormatVector.hpp" />
+    <ClInclude Include="src\Formatting\TextFormatExamples.hpp" />
+    <ClInclude Include="src\NonTypeTemplateParams\NonTypeTemplateParams.hpp" />
+    <ClInclude Include="src\NonTypeTemplateParams\NTTPTests.hpp" />
+    <ClInclude Include="src\RangesContainerView.hpp" />
+    <ClInclude Include="src\RangesExamples01.hpp" />
+    <ClInclude Include="src\RangesFilterPythonStyle.hpp" />
+    <ClInclude Include="src\RangesPCH.hpp" />
+    <ClInclude Include="src\STLSpan\SpanStaticDynamic.hpp" />
+    <ClInclude Include="src\Formatting\StockIndex.hpp" />
+    <ClInclude Include="src\ThreeWayComparision\ThreeWayCompareTests.hpp" />
+    <ClInclude Include="src\ThreeWayComparision\ThreewayComparisionUtils.hpp" />
+    <ClInclude Include="src\ThreeWayComparision\ThreewayComparisionUtils2.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

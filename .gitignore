@@ -1,0 +1,12 @@
+# Binaries
+**/bin/
+!vendor/bin/premake/
+bin-int/
+
+# Any log files
+*.log
+
+
+# Visual Studio files and folder
+.vs/
+
