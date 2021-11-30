@@ -1,7 +1,7 @@
 #pragma once
 #include "RangesPCH.hpp"
 
-// THIS DOES NOT COMPILE with std::format but works with fmt::format
+// FIXED in VS2022; THIS DOES NOT COMPILE with std::format but works with fmt::format
 template<typename T>
 struct std::formatter<std::vector<T>>
 {

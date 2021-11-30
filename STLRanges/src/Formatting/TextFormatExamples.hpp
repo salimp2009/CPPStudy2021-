@@ -2,7 +2,7 @@
 #include "RangesPCH.hpp"
 //#include "Formatting/CustomFormatter.hpp"
 //#include "Formatting/CustomFormatterV2.hpp"
-//#include "Formatting/CustFormatStockIndexV3.hpp"
+#include "Formatting/CustFormatStockIndexV3.hpp"
 #include "Formatting/StockIndex.hpp"
 #include "Formatting/CustomFormatVector.hpp"
 #include "Formatting/CustomFormatLogger.hpp"
@@ -96,25 +96,26 @@ inline void FormatSign()
 	
 }
 
-// Not compiling the custom format because of the MSVC bug in std::format_to referring to function Grow() in fmt_buffer_iterator!!
+// FIXED in VS2022: Not compiling the custom format in VS2019 
+// VS2019 error: MSVC bug in std::format_to referring to function Grow() in fmt_buffer_iterator!!
 inline void CustomFormat_V1()
 {
 	std::printf("\n--CustomFormat_V1--\n");
 
 	for (const auto& index : GetIndices())
 	{
-		//fmt::print("{}", std::format("{}\n", index));
+		fmt::print("{}", std::format("{}\n", index));
 
-		//std::cout << std::format("{}\n", index);
+		std::cout << std::format("{}\n", index);
 		std::cout << index.name() << " " << index.points() << "  "
 			<< index.pointsDiff() << "  " << index.pointsPercent()
 			<< '%' << '\n';
 	}
 
-	// Example from the book does not compile 
-	//for (const auto& index : GetIndices()) {
-	//	std::cout <<"custom format revised:"<< std::format("{}\n", index);
-	//}
+	// compiles with VS 2022 but not VS2019
+	for (const auto& index : GetIndices()) {
+		std::cout <<"custom format revised:"<< std::format("{}\n", index);
+	}
 
 }
 
@@ -170,30 +171,34 @@ inline void CustomFormat_Vector()
 
 }
 
- // Not compiling the custom format because of the MSVC bug in std::format_to referring to function Grow() in fmt_buffer_iterator!!
+ // Fixed in VS2022 : Not compiling in VS2019;
+ // VS2019 error; the custom format because of the MSVC bug in std::format_to referring to function Grow() in fmt_buffer_iterator!!
  inline void CustomFormat_V2()
  {
-	 //std::printf("\n--CustomFormat_V1--\n");
+	 std::printf("\n--CustomFormat_V2--\n");
 
-	 //auto tempVec = GetIndices();
+	 auto tempVec = GetIndices();
 
-	 //// regular print format with no plus sign
-	 //for (const auto& index : tempVec)
-	 //{
-		// fmt::print("{}\n", std::format("{}", index));
-	 //}
+	 std::puts("IndexFormat:Normal");
+	 // regular print format with no plus sign
+	 for (const auto& index : tempVec)
+	 {
+		 fmt::print("{}\n", std::format("{}", index));
+	 }
 
-	 //// custom format identifier 's' for a short form; only name and index printed
-	 //for (const auto& index : tempVec)
-	 //{
-		// fmt::print("{}\n", std::format("{:s}", index));
-	 //}
+	 std::puts("IndexFormat:Short");
+	 // custom format identifier 's' for a short form; only name and index printed
+	 for (const auto& index : tempVec)
+	 {
+		 fmt::print("{}\n", std::format("{:s}", index));
+	 }
 
-	 //// custom format identifier 'p' for a long form with a Plus sign
-	 //for (const auto& index : tempVec)
-	 //{
-		// fmt::print("{}\n", std::format("{:p}", index));
-	 //}
+	 std::puts("IndexFormat:WithPlus");
+	 // custom format identifier 'p' for a long form with a Plus sign
+	 for (const auto& index : tempVec)
+	 {
+		 fmt::print("{}\n", std::format("{:p}", index));
+	 }
  }
 
  inline void DecHexOctTypeSpecifier()
@@ -212,25 +217,27 @@ inline void CustomFormat_Vector()
  // Not compiling the custom format because of the MSVC bug in std::format_to referring to function Grow() in fmt_buffer_iterator!!
  inline void custformatStockIndex_V3()
  {
-	// std::printf("\n--custformatStockIndex_V3--\n");
+	 std::printf("\n--custformatstockindex_v3--\n");
 
-	// for (const auto& index : GetIndices())
-	// {
-	//	 fmt::print("{}\n", std::format("{:Ls}", index));
-	// }
+	 std::puts("IndexFormat:Short;");
+	 for (const auto& index : GetIndices())
+	 {
+		 fmt::print("{}\n", std::format("{:Ls}", index));
+	 }
 
-	// for (const auto& index : GetIndices())
-	// {
-	//	 fmt::print("{}\n", std::format("{:Lp}", index));
-	// }
+	 for (const auto& index : GetIndices())
+	 {
+		 fmt::print("{}\n", std::format("{:Lp}", index));
+	 }
 
-	 //for (const auto& index : GetIndices()) {
-		// std::cout << std::format("{:Ls}\n", index);
-	 //}
+	 // TODO; "L" refers to add any localized character such as "$" ; need to add that example
+	 for (const auto& index : GetIndices()) {
+		 std::cout << std::format("{:Ls}\n", index);
+	 }
 
-	 //for (const auto& index : GetIndices()) {
-		// std::cout << std::format("{:Lp}\n", index);
-	 //}
+	 for (const auto& index : GetIndices()) {
+		 std::cout << std::format("{:Lp}\n", index);
+	 }
  }
 
  struct Share
@@ -251,7 +258,6 @@ inline void CustomFormat_Vector()
 	 for (const auto& share : myShares)
 	 {
 		 fmt::print("{}\n", std::format(locDE, "{1:10} {2:>8.2f}{0:} {3:>+8.2f}{0:}", "$", share.name, share.price, share.priceDelta));
-		
 	 }
  }
 

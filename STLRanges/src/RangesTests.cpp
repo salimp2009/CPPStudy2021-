@@ -18,7 +18,7 @@
 #include "Attributes/AtttributesTests.hpp"
 #include "Attributes/VolatileChangesTests.hpp"
 #include "FurtherImprovemntsCPP20/ImprovmntsCPP20Tests.hpp"
-
+//
 
 auto main()->int
 {
@@ -63,8 +63,10 @@ auto main()->int
 	//FormatwithLocales();
 	//FormatFillAlign();
 	//FormatSign();
-	//CustomFormat_V1();
-	//CustomFormat_Vector();
+	CustomFormat_V1();
+	CustomFormat_V2();
+	custformatStockIndex_V3();
+	CustomFormat_Vector();
 	//WidthPrecisionSpecifier();
 	//DecHexOctTypeSpecifier();
 	//formatArgumentOrder();

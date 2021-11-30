@@ -2,7 +2,7 @@
 #include "RangesPCH.hpp"
 #include "Formatting/StockIndex.hpp"
 
-// THIS DOES NOT COMPILE at all!!!!
+// FIXED in vs2022; VS 2019 THIS DOES NOT COMPILE at all!!!!
 template<>
 struct std::formatter<StockIndex> 
 {

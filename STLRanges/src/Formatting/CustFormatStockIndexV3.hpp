@@ -37,6 +37,7 @@ struct std::formatter<StockIndex> {
         if (it != ctx.end() && *it != '}') { throw format_error("invalid format"); }
 
         return it;
+     
     }
 
     auto format(const StockIndex& index, format_context& ctx)
@@ -53,7 +54,7 @@ struct std::formatter<StockIndex> {
             const auto fmt{
               std::format("{{:10}} {{:>8.2{0}f}}  {{:>{1}7.2{0}f}}  {{:{1}.2{0}f}}%",
                           locFloat,
-                          plus) };
+                          plus)};
 
             return std::format_to(ctx.out(),
                 fmt,
